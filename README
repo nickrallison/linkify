@@ -1,0 +1,4 @@
+# Directions
+1. Clone to  a reasonable location
+2. Input & Output folder locations are at the top of main.py. Change to zettelkasten folder
+3. Run ```make``` from root directory of project
