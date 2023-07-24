@@ -5,12 +5,12 @@ from get_keys import get_keys
 from linking import link
 from cleaning import remove_links
 
-# Notes
-# Don't Let Notes Link to themselves
-# After Every replacement, the note must be purged from the hashmap, hashing must be redone, and it must be restored 
+folder = "/home/nick/Nextcloud/Documents/Vault/500 - Zettelkasten"
+test_folder = "/home/nick/Nextcloud/Documents/Vault/500 - Zettelkasten"
 
-folder = "notes"
-test_folder = "notes_out"
+# folder = "notes"
+# test_folder = "notes_out"
+
 string_dict_loc = "assets/string_dict"
 file_dict_loc = "assets/file_dict"
 saving_max_len = 5
@@ -29,8 +29,10 @@ def main():
     for file_tuple in ordered_tuples:
         key, filename = file_tuple
         key = clean(key)
+
         if key in string_dict:
-            link(key, filename, string_dict[key], folder, test_folder)
+            for dict_entry in string_dict[key]:
+                link(key, filename, dict_entry, folder, test_folder)
 
 
 main()

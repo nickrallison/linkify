@@ -62,8 +62,10 @@ def save(folder, max_len, string_dict_loc, file_dict_loc):
                         continue
                     for word_inc in range(length + 1):
                         sentence = sentence + word_array[count + word_inc] + " "
-                    string_dictionary[sentence.strip()] = (filename, count, count + word_inc)
-                    file_dictionary[filename] = sentence.strip()
+                    if sentence.strip() not in string_dictionary:
+                        string_dictionary[sentence.strip()] = []
+                    string_dictionary[sentence.strip()].append((filename, count, count + word_inc))
+                    #file_dictionary[filename] = sentence.strip()
 
 
     str_dict_ser = pickle.dumps(string_dictionary)
