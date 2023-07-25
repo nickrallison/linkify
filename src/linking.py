@@ -18,7 +18,7 @@ def link(key, key_file, file_tuple, folder, write_folder):
         if count == len(key.split(' ')) - 1:
             regex_key = regex_key + r"s?"
         else:
-            regex_key = regex_key + r".*?"
+            regex_key = regex_key + r".?"
     regex_key = regex_key + r"(?=[\s,\.\):;])(?!\.md)"
 
     file_path_read = os.path.join(folder, file_path)
@@ -30,6 +30,14 @@ def link(key, key_file, file_tuple, folder, write_folder):
 
     yaml_pattern = re.compile(r'---[\s\S]*?---', re.IGNORECASE)
     yaml_blocks = re.findall(yaml_pattern, file_str)
+
+    link_pattern = re.compile(r'\[\[[\s\S]*?\]\]', re.IGNORECASE)
+    link_blocks = re.findall(link_pattern, file_str)
+
+    yaml_blocks = yaml_blocks + link_blocks
+
+    if file_path == "Church-Turing Thesis.md":
+        print(file_str, regex_key)
 
     for yaml_block in yaml_blocks:
         placeholder = f'<ZZZZ_BLOCK_{yaml_blocks.index(yaml_block)}>'
