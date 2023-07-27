@@ -5,8 +5,8 @@ from get_keys import get_keys
 from linking import link
 from cleaning import remove_links
 
-folder = "/home/nick/Nextcloud/Documents/Vault/500-Zettelkasten"
-test_folder = "/home/nick/Nextcloud/Documents/Vault/500-Zettelkasten"
+folder = "notes"
+test_folder = "notes"
 
 # folder = "notes"
 # test_folder = "notes_out"
