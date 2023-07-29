@@ -1,5 +1,5 @@
 import os
-from difflib import SequenceMatcher
+import difflib
 
 def test(test_folder, out_folder):
     test_directory_path = os.path.join(test_folder)
@@ -38,6 +38,7 @@ def test(test_folder, out_folder):
                 test_file_str = f.read()
             if result_file_str != test_file_str:
                 print(f"LINKING ERROR: {file} mismatch")
+                diff_str(result_file_str, test_file_str)
                 errors = errors + 1
 
         else:
@@ -46,3 +47,14 @@ def test(test_folder, out_folder):
 
     if errors == 0:
         print("ALL TESTS PASSED")
+
+def diff_str(a, b):
+    print('{} => {}'.format(a,b))  
+    for i,s in enumerate(difflib.ndiff(a, b)):
+        if s[0]==' ': 
+            continue
+        elif s[0]=='-':
+            print(u'Delete "{}" from position {}'.format(s[-1],i))
+        elif s[0]=='+':
+            print(u'Add "{}" to position {}'.format(s[-1],i))
+        print()   
