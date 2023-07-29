@@ -17,16 +17,12 @@ regexes_ws = [ r"---[\s\S]*?---",
             r"-",
             ]
 
-# regexes_empty = [ r"'",
-#             ]
+regexes_empty = [ r"['|’]",
+            r"\*",
+            ]
 
 string_dictionary = {}  # string -> file
 file_dictionary = {}    # file   -> string
-
-# Notes
-# Don't Let Notes Link to themselves
-# After Every replacement, the note must be purged from the hashmap, hashing must be redone, and it must be restored 
-
 
 
 def repl_ws(m):
@@ -39,7 +35,8 @@ def repl_nothing(m):
 def clean(file_str, lowercase=True):
     for regex in regexes_ws:   
         file_str = re.sub(regex, repl_ws, file_str, count=0, flags=0)
-
+    for regex in regexes_empty:   
+        file_str = re.sub(regex, "", file_str, count=0, flags=0)
     if lowercase:
         return file_str.lower()
     return file_str

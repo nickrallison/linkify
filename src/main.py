@@ -1,23 +1,41 @@
 import os
+import sys
 
 from saving import save, load, clean
 from get_keys import get_keys
 from linking import link
 from cleaning import remove_links
+from test import test
 
-folder = "/home/nick/Nextcloud/Documents/Vault/500-Zettelkasten"
-test_folder = "/home/nick/Nextcloud/Documents/Vault/500-Zettelkasten"
+args = []
+args = sys.argv
 
-# folder = "notes"
-# test_folder = "notes_out"
+run_folder = "notes" #"/home/nick/Nextcloud/Documents/Vault/500-Zettelkasten"
+
+folder = ""
+out_folder = ""
+if "test" in args:
+    folder = "notes"
+    out_folder = "notes_out"
+    test_folder = "test"
+else:    
+    folder = run_folder
+    out_folder = run_folder
+    test_folder = run_folder
+
 
 string_dict_loc = "assets/string_dict"
 file_dict_loc = "assets/file_dict"
 saving_max_len = 5
 
+
+
+
 def main():
     remove_links(folder, folder)
 
+    if "clean" in args:
+        return
     save(folder, saving_max_len, string_dict_loc, file_dict_loc)
     string_dict, file_dict = load(string_dict_loc, file_dict_loc)
     directory_path = os.path.join(folder)
@@ -31,12 +49,12 @@ def main():
     for file_tuple in ordered_tuples:
         key, filename = file_tuple
         key = clean(key)
-
         if key in string_dict:
             for dict_entry in string_dict[key]:
-                link(key, filename, dict_entry, folder, test_folder)
-    
-    #os.system(f"cp -r {test_folder} {folder}")
+                link(key, filename, dict_entry, folder, out_folder)
+
+    if "test" in args:
+        test(test_folder, out_folder)
 
 
 main()
