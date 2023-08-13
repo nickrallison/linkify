@@ -9,8 +9,9 @@ from test import test
 
 args = []
 args = sys.argv
-
-run_folder = "notes" #"/home/nick/Nextcloud/Documents/Vault/500-Zettelkasten"
+# if len(args) > 1:
+#     os.chdir(args[1])
+run_folder = os.path.abspath(os.path.join("..", "..", "..", "..", "500-Zettelkasten"))
 
 folder = ""
 out_folder = ""
@@ -36,11 +37,10 @@ def main():
 
     if "clean" in args:
         return
-    save(folder, saving_max_len, string_dict_loc, file_dict_loc)
-    string_dict, file_dict = load(string_dict_loc, file_dict_loc)
+    string_dict, file_dict = save(folder, saving_max_len)
+    string_dict, file_dict
     directory_path = os.path.join(folder)
     files = os.listdir(directory_path)
-
     file_tuples = get_keys(folder, files)
     ordered_tuples = sorted(file_tuples, key=lambda x: len(x[0]), reverse=True)
 
@@ -52,9 +52,8 @@ def main():
         if key in string_dict:
             for dict_entry in string_dict[key]:
                 link(key, filename, dict_entry, folder, out_folder)
-
     if "test" in args:
         test(test_folder, out_folder)
-
+    print("Linking Successful")
 
 main()
