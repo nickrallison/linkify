@@ -9,8 +9,7 @@ from test import test
 
 args = []
 args = sys.argv
-# if len(args) > 1:
-#     os.chdir(args[1])
+VAULT_DIR = args[1]
 run_folder = os.path.abspath(os.path.join("..", "..", "..", "..", "500-Zettelkasten"))
 
 folder = ""

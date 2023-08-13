@@ -50,7 +50,6 @@ def save(folder, max_len):
     for filename in files:
         file_path = os.path.join(folder, filename)
         with open(file_path, "r", encoding="utf-8") as f:
-            #print(file_path)
             file_str = clean(f.read())
             word_array = re.split(r"\s+", file_str.strip())
             for length in range(max_len):

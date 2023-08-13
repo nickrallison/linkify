@@ -1,5 +1,5 @@
 default: 
-	@python src/main.py
+	@python src/main.py notes
 
 clean_files:
 	@python src/main.py clean
