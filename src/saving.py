@@ -61,7 +61,10 @@ def save(folder, max_len):
                         sentence = sentence + word_array[count + word_inc] + " "
                     if sentence.strip() not in string_dictionary:
                         string_dictionary[sentence.strip()] = []
+                    if sentence.strip() + "s" not in string_dictionary:
+                        string_dictionary[sentence.strip()+"s"] = []
                     string_dictionary[sentence.strip()].append((filename, count, count + word_inc))
+                    string_dictionary[sentence.strip()+"s"].append((filename, count, count + word_inc))
                     #file_dictionary[filename] = sentence.strip()
     return string_dictionary, file_dictionary
 
