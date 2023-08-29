@@ -1,58 +1,36 @@
 import os
 import sys
 
-from saving import save, load, clean
-from get_keys import get_keys
-from linking import link
-from cleaning import remove_links
-from test import test
+from path_manipulate import flatten_files, get_files_as_dict, get_file_titles_and_aliases, add_link, \
+    write_string_to_file, get_filename
 
-args = []
 args = sys.argv
 VAULT_DIR = args[1]
-run_folder = os.path.abspath(os.path.join("..", "..", "..", "..", "500-Zettelkasten"))
+save_folders = [os.path.join(VAULT_DIR, "500-Zettelkasten"), os.path.join(VAULT_DIR, "400-PDFs")]  # Files that will have links inserted
+link_folders = [os.path.join(VAULT_DIR, "500-Zettelkasten")]  # Files whos aliases / titles are linked against
 
-folder = ""
-out_folder = ""
-if "test" in args:
-    folder = "notes"
-    out_folder = "notes_out"
-    test_folder = "test"
-else:    
-    folder = run_folder
-    out_folder = run_folder
-    test_folder = run_folder
+# save_folders = ["files"]  # Files that will have links inserted
+# link_folders = ["files"]  # Files whos aliases / titles are linked against
 
-
-string_dict_loc = "assets/string_dict"
-file_dict_loc = "assets/file_dict"
-saving_max_len = 5
-
-
-
-
+max_save_len = 3
 def main():
-    remove_links(folder, folder)
 
-    if "clean" in args:
-        return
-    string_dict, file_dict = save(folder, saving_max_len)
-    string_dict, file_dict
-    directory_path = os.path.join(folder)
-    files = os.listdir(directory_path)
-    file_tuples = get_keys(folder, files)
-    ordered_tuples = sorted(file_tuples, key=lambda x: len(x[0]), reverse=True)
+    files_to_save = flatten_files(save_folders, VAULT_DIR)  # path from root to allow folders
+    files_to_link = flatten_files(link_folders, VAULT_DIR)  # path from root to allow folders
 
-    files_changed = {}
+    search_set = get_files_as_dict(files_to_save, max_save_len, VAULT_DIR)
+    for link_file_path in files_to_link:
+        titles = get_file_titles_and_aliases(link_file_path, VAULT_DIR)
+        for title in titles:
+            if title in search_set:
+                files_containing_title = search_set[title]
+                for file_containing_title in files_containing_title:
+                    if not title in get_file_titles_and_aliases(file_containing_title, VAULT_DIR):
+                        linked_file = add_link(file_containing_title, title, link_file_path, VAULT_DIR)
+                        result_path = os.path.join(VAULT_DIR, file_containing_title)
+                        write_string_to_file(linked_file, result_path)
+    print("Done Linking")
 
-    for file_tuple in ordered_tuples:
-        key, filename = file_tuple
-        key = clean(key)
-        if key in string_dict:
-            for dict_entry in string_dict[key]:
-                link(key, filename, dict_entry, folder, out_folder)
-    if "test" in args:
-        test(test_folder, out_folder)
-    print("Linking Successful")
 
-main()
+if __name__ == "__main__":
+    main()
