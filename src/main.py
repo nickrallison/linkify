@@ -10,18 +10,12 @@ from test import test
 args = []
 args = sys.argv
 VAULT_DIR = args[1]
-run_folder = os.path.abspath(os.path.join("..", "..", "..", "..", "500-Zettelkasten"))
+run_folder = ["500-Zettelkasten", "400-PDFs"]
 
-folder = ""
-out_folder = ""
-if "test" in args:
-    folder = "notes"
-    out_folder = "notes_out"
-    test_folder = "test"
-else:    
-    folder = run_folder
-    out_folder = run_folder
-    test_folder = run_folder
+
+folder = os.path.abspath(os.path.join(VAULT_DIR, "500-Zettelkasten"))
+out_folder = os.path.abspath(os.path.join(VAULT_DIR, "500-Zettelkasten"))
+test_folder = os.path.abspath(os.path.join(VAULT_DIR, "500-Zettelkasten"))
 
 
 string_dict_loc = "assets/string_dict"
@@ -36,8 +30,7 @@ def main():
 
     if "clean" in args:
         return
-    string_dict, file_dict = save(folder, saving_max_len)
-    string_dict, file_dict
+    string_dict, file_dict = save(run_folder, saving_max_len, VAULT_DIR)
     directory_path = os.path.join(folder)
     files = os.listdir(directory_path)
     file_tuples = get_keys(folder, files)
@@ -48,6 +41,8 @@ def main():
     for file_tuple in ordered_tuples:
         key, filename = file_tuple
         key = clean(key)
+        # if key == 'random variable':
+        #     print(string_dict[key])
         if key in string_dict:
             for dict_entry in string_dict[key]:
                 link(key, filename, dict_entry, folder, out_folder)

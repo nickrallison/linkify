@@ -25,5 +25,6 @@ def get_keys(folder, file_list):
                     updated_string = re.sub(array_pattern, ', '.join(quoted_values), alias_block, re.DOTALL)  # Replacing the old array with the new one
                     for literal in literal_eval(updated_string):
                         keys.append((literal, filename))
+                        keys.append((literal + "s", filename))
     return keys
 

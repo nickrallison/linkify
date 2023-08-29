@@ -6,7 +6,14 @@ from saving import clean
 
 def link(key, key_file, file_tuple, folder, write_folder):
     file_path, start, end = file_tuple
-    file_keys = get_keys(folder, [file_path])
+    # if file_path.find("400-PDFs") != -1:
+    filename_temp = os.path.basename(file_path)
+    
+    try:
+        file_keys = get_keys(os.path.abspath(os.path.join(os.path.dirname(file_path))), [filename_temp])
+    except:
+        print(f"Bad File: {filename_temp}")
+        return
 
     for file_key in file_keys:
         if clean(key) == clean(file_key[0]):
