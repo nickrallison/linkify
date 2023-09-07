@@ -64,8 +64,6 @@ def save(folders, max_len, vault_root):
 
     test_files = [os.path.basename(x) for x in files]
 
-    print("13. Probability.md" in test_files)
-
     for file_path in files:
         filename = os.path.basename(file_path)
         with open(file_path, "r", encoding="utf-8") as f:

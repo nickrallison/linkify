@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="002d35f9-540a-4491-b6d0-bf733bb126e7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/string_manipulate.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/unlink.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/AM Modulator.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/Akra-Bazzi Theorem.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/Amplitude Modulation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/Big-O Notation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/FM Modulator.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/Frequency Modulation.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cleaning.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/get_keys.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/linking.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/saving.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/temp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.py" afterDir="false" />
-    </list>
+    <list default="true" id="002d35f9-540a-4491-b6d0-bf733bb126e7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,9 +23,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2UaX108HbwfXx5loLw9YKFQatD8" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -56,8 +39,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "last_opened_file_path": "C:/Users/nick/Documents/Vault/.obsidian/scripts/python/linkify/src/test.py",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/nick/Documents/Vault/.obsidian/scripts/python",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,6 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1693178446149</updated>
       <workItem from="1693178447141" duration="21589000" />
+      <workItem from="1693281371653" duration="60000" />
     </task>
     <servers />
   </component>

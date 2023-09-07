@@ -11,6 +11,7 @@ def get_keys(folder, file_list):
     for count, value in enumerate(files):
         keys.append((files_sanitized[count], value))
     for filename in files:
+
         file_path = os.path.join(folder, filename)
         with open(file_path, 'r', encoding="utf8") as file:
             content = file.read()
@@ -26,5 +27,15 @@ def get_keys(folder, file_list):
                     for literal in literal_eval(updated_string):
                         keys.append((literal, filename))
                         keys.append((literal + "s", filename))
+            alias_pattern_2 = re.compile(r'---[\s\S]*?aliases: ?\n((?:\s*- .*\n)+)[\s\S]*---', re.IGNORECASE)
+            alias_blocks_2 = re.findall(alias_pattern_2, content)
+
+            for alias_block in alias_blocks_2:
+                alias_pattern_3 = re.compile(r'- (.*)\n', re.IGNORECASE)
+                alias_blocks_3 = re.findall(alias_pattern_3, content)
+                for key in alias_blocks_3:
+                    keys.append((key, filename))
+                    keys.append((key + "s", filename))
+
     return keys
 
